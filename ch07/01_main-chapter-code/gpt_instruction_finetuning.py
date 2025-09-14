@@ -103,9 +103,6 @@ def download_and_load_file(file_path, url):
             text_data = response.read().decode("utf-8")
         with open(file_path, "w", encoding="utf-8") as file:
             file.write(text_data)
-    else:
-        with open(file_path, "r", encoding="utf-8") as file:
-            text_data = file.read()
 
     with open(file_path, "r") as file:
         data = json.load(file)
@@ -178,7 +175,7 @@ def main(test_mode=False):
     val_data = data[train_portion + test_portion:]
 
     # Use very small subset for testing purposes
-    if args.test_mode:
+    if test_mode:
         train_data = train_data[:10]
         val_data = val_data[:10]
         test_data = test_data[:10]
